@@ -11,20 +11,31 @@ export default function styleConstructor(theme={}) {
       height: 32,
       alignItems: 'center'
     },
+    viewBase: {
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    dateBase: {
+      flex: 1,
+      aspectRatio: 1
+    },
     text: {
-      marginTop: 4,
+      // marginTop: 4,
       fontSize: appStyle.textDayFontSize,
       fontFamily: appStyle.textDayFontFamily,
       fontWeight: '300',
       color: appStyle.dayTextColor,
       backgroundColor: 'rgba(255, 255, 255, 0)'
     },
+    lunarText: {
+      fontSize: appStyle.textLunarDayFontSize,
+    },
     alignedText: {
       marginTop: Platform.OS === 'android' ? 4 : 6
     },
     selected: {
       backgroundColor: appStyle.selectedDayBackgroundColor,
-      borderRadius: 16
+      borderRadius: 16,
     },
     todayText: {
       color: appStyle.todayTextColor
@@ -34,6 +45,12 @@ export default function styleConstructor(theme={}) {
     },
     disabledText: {
       color: appStyle.textDisabledColor
+    },
+    holidayText: {
+      color: appStyle.holidayTextColor
+    },
+    disabledHolidayText: {
+      color: appStyle.holidayTextDisabledColor
     },
     dot: {
       width: 4,

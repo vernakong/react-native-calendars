@@ -60,7 +60,10 @@ class Day extends Component {
 
   render() {
     const containerStyle = [this.style.base];
+    const dateContainerStyle = [this.style.dateBase, this.style.viewBase];
+    const lunarDateContainerStyle = [this.style.viewBase];
     const textStyle = [this.style.text];
+    const lunarTextStyle = [this.style.text, this.style.lunarText];
     const dotStyle = [this.style.dot];
 
     let marking = this.props.marking || {};
@@ -69,6 +72,8 @@ class Day extends Component {
         marking: true
       };
     }
+
+    //TODO: handling highlight of text here
     let dot;
     if (marking.marked) {
       dotStyle.push(this.style.visibleDot);
@@ -78,14 +83,24 @@ class Day extends Component {
       dot = (<View style={dotStyle}/>);
     }
 
-    if (marking.selected) {
-      containerStyle.push(this.style.selected);
+    if (typeof marking.disabled !== 'undefined' ? marking.disabled : this.props.state === 'disabled') {
+      if (this.props.date && this.props.date.weekDay === 0){
+        textStyle.push(this.style.disabledHolidayText);
+        lunarTextStyle.push(this.style.disabledHolidayText);
+      } else {
+        textStyle.push(this.style.disabledText);
+        lunarTextStyle.push(this.style.disabledText);
+      }
+    } else if (marking.selected) {
+      dateContainerStyle.push(this.style.selected);
       dotStyle.push(this.style.selectedDot);
       textStyle.push(this.style.selectedText);
-    } else if (typeof marking.disabled !== 'undefined' ? marking.disabled : this.props.state === 'disabled') {
-      textStyle.push(this.style.disabledText);
-    } else if (this.props.state === 'today') {
-      textStyle.push(this.style.todayText);
+      if (this.props.date && this.props.date.weekDay === 0){
+          lunarTextStyle.push(this.style.holidayText);
+      }
+    }  else if (this.props.date && this.props.date.weekDay === 0){
+      textStyle.push(this.style.holidayText);
+      lunarTextStyle.push(this.style.holidayText);
     }
     return (
       <TouchableOpacity
@@ -97,8 +112,14 @@ class Day extends Component {
             : this.props.state === 'disabled'
         }
       >
-        <Text allowFontScaling={false} style={textStyle}>{String(this.props.children)}</Text>
-        {dot}
+      <View>
+        <View style={dateContainerStyle}>
+          <Text style={textStyle}>{String(this.props.children)}</Text>
+        </View>
+        <View style={lunarDateContainerStyle}>
+          <Text style={lunarTextStyle}>{this.props.lunarDate? this.props.lunarDate: ' '}</Text>
+        </View>
+      </View>
       </TouchableOpacity>
     );
   }

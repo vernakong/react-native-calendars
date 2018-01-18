@@ -17,7 +17,8 @@ export const textDayFontFamily = 'System';
 export const textMonthFontFamily = 'System';
 export const textDayHeaderFontFamily = 'System';
 
-export const textDayFontSize = 16;
+export const textDayFontSize = 12;
+export const textLunarDayFontSize = 10;
 export const textMonthFontSize = 16;
 export const textDayHeaderFontSize = 13;
 
@@ -28,6 +29,8 @@ export const selectedDayTextColor = foregroundColor;
 export const todayTextColor = textLinkColor;
 export const dayTextColor = textDefaultColor;
 export const textDisabledColor = '#d9e1e8';
+export const holidayTextColor = '#F04157';
+export const holidayTextDisabledColor = '#FDE3E6';
 export const dotColor = textLinkColor;
 export const selectedDotColor = foregroundColor;
 export const arrowColor = textLinkColor;
