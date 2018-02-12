@@ -17,8 +17,8 @@ export const textDayFontFamily = 'System';
 export const textMonthFontFamily = 'System';
 export const textDayHeaderFontFamily = 'System';
 
-export const textDayFontSize = 12;
-export const textLunarDayFontSize = 10;
+export const textDayFontSize = 15;
+export const textLunarDayFontSize = 15;
 export const textMonthFontSize = 16;
 export const textDayHeaderFontSize = 13;
 

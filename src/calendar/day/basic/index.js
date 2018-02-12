@@ -114,10 +114,10 @@ class Day extends Component {
       >
       <View>
         <View style={dateContainerStyle}>
-          <Text style={textStyle}>{String(this.props.children)}</Text>
+          <Text allowFontScaling={false} style={textStyle}>{String(this.props.children)}</Text>
         </View>
         <View style={lunarDateContainerStyle}>
-          <Text style={lunarTextStyle}>{this.props.lunarDate? this.props.lunarDate: ' '}</Text>
+          <Text allowFontScaling={false} style={lunarTextStyle}>{this.props.lunarDate? this.props.lunarDate: ' '}</Text>
         </View>
       </View>
       </TouchableOpacity>
