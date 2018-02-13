@@ -74,34 +74,46 @@ class Day extends Component {
     }
 
     //TODO: handling highlight of text here
-    let dot;
-    if (marking.marked) {
-      dotStyle.push(this.style.visibleDot);
-      if (marking.dotColor) {
-        dotStyle.push({backgroundColor: marking.dotColor});
-      }
-      dot = (<View style={dotStyle}/>);
-    }
+    // let dot;
+    // if (marking.marked) {
+    //   dotStyle.push(this.style.visibleDot);
+    //   if (marking.dotColor) {
+    //     dotStyle.push({backgroundColor: marking.dotColor});
+    //   }
+    //   dot = (<View style={dotStyle}/>);
+    // }
 
     if (typeof marking.disabled !== 'undefined' ? marking.disabled : this.props.state === 'disabled') {
+      //disabled date
       if (this.props.date && this.props.date.weekDay === 0){
+        //disabled sunday
         textStyle.push(this.style.disabledHolidayText);
         lunarTextStyle.push(this.style.disabledHolidayText);
       } else {
         textStyle.push(this.style.disabledText);
         lunarTextStyle.push(this.style.disabledText);
       }
-    } else if (marking.selected) {
-      dateContainerStyle.push(this.style.selected);
-      dotStyle.push(this.style.selectedDot);
-      textStyle.push(this.style.selectedText);
-      if (this.props.date && this.props.date.weekDay === 0){
-          lunarTextStyle.push(this.style.holidayText);
+    } else {
+      //enabled date
+      if(this.props.date && this.props.date.weekDay === 0){
+        //sunday
+        textStyle.push(this.style.holidayText);
+        lunarTextStyle.push(this.style.holidayText);
       }
-    }  else if (this.props.date && this.props.date.weekDay === 0){
-      textStyle.push(this.style.holidayText);
-      lunarTextStyle.push(this.style.holidayText);
+      if (marking.marked) {
+        let bgColor = marking.dotColor? marking.dotColor: '#f5a623';
+        dateContainerStyle.push(this.style.selected);
+        dateContainerStyle.push({backgroundColor: bgColor});
+        textStyle.push(this.style.selectedText);
+      }
+      if (marking.selected) {
+        //selected date
+        dateContainerStyle.push(this.style.selected);
+        // dotStyle.push(this.style.selectedDot);
+        textStyle.push(this.style.selectedText);
+      }
     }
+
     return (
       <TouchableOpacity
         style={containerStyle}
