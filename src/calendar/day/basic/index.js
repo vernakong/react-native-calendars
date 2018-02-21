@@ -31,7 +31,7 @@ class Day extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const changed = ['state', 'children', 'marking', 'onPress'].reduce((prev, next) => {
+    const changed = ['state', 'children', 'marking', 'onPress', 'lunarDate'].reduce((prev, next) => {
       if (prev) {
         return prev;
       } else if (nextProps[next] !== this.props[next]) {
